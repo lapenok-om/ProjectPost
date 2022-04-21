@@ -7,9 +7,20 @@ import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import IconButton from '@mui/material/IconButton';
 
 
 export const Card = ({ itemPost }) => {
+
+   let authorIs = true;
+   if (itemPost.author == null){
+      authorIs = false;
+   }
+
+   const likesCount = itemPost.likes
+
+
    return (
    <CardMui sx={{ maxWidth: 345 }}>
        <CardActions>
@@ -17,16 +28,19 @@ export const Card = ({ itemPost }) => {
     </CardActions>
       
       <Divider />
-   <CardHeader
-        avatar={<Avatar alt="Remy Sharp" src={itemPost.author.Avatar} />}
-        title={itemPost.author.email}
-    />
+   { <CardHeader
+        avatar={<Avatar alt="Remy Sharp" src={authorIs? itemPost.author.avatar : ''}/>}
+        title={authorIs? itemPost.author.email : ''}
+    /> }
     <CardContent>
       <Typography variant="body2">
          {itemPost.text}
-          
+         
       </Typography>
-
+      { <IconButton aria-label="add to favorites">
+         {likesCount.length}
+          <FavoriteIcon />
+      </IconButton> }
     </CardContent>
    </CardMui>
 

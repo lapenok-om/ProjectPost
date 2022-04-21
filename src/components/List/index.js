@@ -6,8 +6,8 @@ export const List = ({ list }) => {
    
     return (
         <div className="cards">
-            {list.map((item) => (
-                <Card itemPost={item} />
+            {list?.map((item, id) => (
+                <Card itemPost={item} key={id}/>
             ))}
         </div>
     );

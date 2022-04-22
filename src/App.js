@@ -40,14 +40,13 @@ export const App = () => {
                 <TextArea />
                 { <div className='content__cards'>
                     <List list={postList} />
-                </div> }
-               
-                <Pagination 
+                </div> }   
+            </div>
+                <Pagination sx={{ mb: 3, mt: 2}}
                     count={pageCount}
                     page={page}
                     onChange={(_,number) => setPage(number)}
                  />
-            </div>
                 <Footer />
             
         </div>

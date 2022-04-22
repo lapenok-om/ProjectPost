@@ -7,6 +7,7 @@ import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import IconButton from '@mui/material/IconButton';
 import Grid from '@mui/material/Grid';
@@ -32,6 +33,12 @@ export const Card = ({ itemPost }) => {
     </CardActions>
       
       <Divider />
+      <CardMedia
+        component="img"
+        height="194"
+        image={itemPost.image}
+        alt="Paella dish"
+      />
    { <CardHeader
         avatar={<Avatar alt="Remy Sharp" src={authorIs? itemPost.author.avatar : ''}/>}
         title={authorIs? itemPost.author.email : ''}
@@ -44,7 +51,7 @@ export const Card = ({ itemPost }) => {
        
            
       <Typography sx={{ mt: 3}} color="text.secondary">
-      {dayjs(itemPost.created_at).format('DD/MM/YYYY')}
+      {dayjs(itemPost.created_at).format('MMMM D, YYYY')}
         </Typography>
       
       

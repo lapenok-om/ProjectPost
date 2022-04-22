@@ -3,23 +3,21 @@ import style from './style.module.css';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Link from '@mui/material/Link';
 import { AboutMe } from '../AboutMe';
+import Logo from '../Logo';
 
 export const Header = ({user}) => {
       return (
         <div className={style.header}>
             <div className="container">
                 <div className={style.header__wrapper}>
-                    <div>logo</div>
+                    <div><Logo /></div>
                     <div><AboutMe userInfo={user}/></div>
                     <div>
                     <Breadcrumbs aria-label="breadcrumb">
                         <Link underline="hover" color="inherit" href="/">
                         Home
                         </Link>
-                        <Link underline="hover" color="inherit" href="/">
-                        Remix Docs
-                        </Link>
-                        <Link underline="hover" color="inherit" href="/">
+                        <Link underline="hover" color="inherit" href="https://github.com/lapenok-om/ProjectPost">
                         GitHub
                         </Link>
                     </Breadcrumbs>

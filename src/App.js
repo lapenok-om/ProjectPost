@@ -15,6 +15,7 @@ export const App = () => {
     const [user, setUser] = useState("?");
     const [page, setPage] = useState(1);
     const [pageCount, setPageCount] = useState(1);
+    const [favorites, setFavorites] = useState(JSON.parse(localStorage.getItem('favorites')) || []);
 
     
 
@@ -24,7 +25,7 @@ export const App = () => {
              setPageCount(Math.ceil(data.length / 12));
              setPostList(data.slice(12*(page - 1), 12*(page - 1) +12))});
 
-     },[page]);
+     },[page, favorites]);
 
     useEffect(() => {
         api.getMyInfo()
@@ -36,17 +37,20 @@ export const App = () => {
     return (
         <div className='appContainer'>
                 <Header user={user} />
-            <div className='content container'>
+            
+            <div className='content container '>
                 <TextArea />
-                { <div className='content__cards'>
-                    <List list={postList} />
-                </div> }   
-            </div>
-                <Pagination sx={{ mb: 3, mt: 2}}
+                 <div className='content__cards'>
+                    <List list={postList} favorites={favorites} setFavorites={setFavorites} user={user} />
+                </div> 
+                <Pagination sx={{ mb: 3, mt: 3, ml: 45 }}
                     count={pageCount}
                     page={page}
                     onChange={(_,number) => setPage(number)}
-                 />
+                 />   
+           
+            </div> 
+                
                 <Footer />
             
         </div>

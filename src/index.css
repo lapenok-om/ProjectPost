@@ -16,6 +16,7 @@ body {
     align-items: center;
     justify-content: space-between;
     height: 100vh;
+    
 }
 
 .container {
@@ -24,20 +25,10 @@ body {
     padding-right: 16px;
     width: 95%;
     margin: 0 auto;
-}
-
-img {
-    max-width: 100%;
+    
 }
 
 .content {
     padding: 20px 0;
-}
-
-.content__sort {
-    margin-bottom: 40px;
-}
-
-.result {
-    font-size: 24px;
+    
 }

@@ -20,8 +20,29 @@ class Api {
         return fetch(`${this._url}/users/me`, {
             headers: {
                 authorization: `Bearer ${this._token}`,
-                'Content-Type': 'application/json'
-            }
+                }
+        }).then(res => res.json())
+        .catch(err => err.message);
+
+    }
+
+    addLike(itemID){
+        return fetch(`${this._url}/posts/likes/${itemID}`, {
+            method: 'PUT',
+            headers: {
+                authorization: `Bearer ${this._token}`,
+                }
+        }).then(res => res.json())
+        .catch(err => err.message);
+
+    }
+
+    deleteLike(itemID){
+        return fetch(`${this._url}/posts/likes/${itemID}`, {
+            method: 'DELETE',
+            headers: {
+                authorization: `Bearer ${this._token}`,
+                }
         }).then(res => res.json())
         .catch(err => err.message);
 

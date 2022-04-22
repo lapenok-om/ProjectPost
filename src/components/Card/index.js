@@ -9,6 +9,9 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import IconButton from '@mui/material/IconButton';
+import Grid from '@mui/material/Grid';
+import dayjs from 'dayjs';
+import './index.css';
 
 
 export const Card = ({ itemPost }) => {
@@ -25,6 +28,7 @@ export const Card = ({ itemPost }) => {
    <CardMui sx={{ maxWidth: 345 }}>
        <CardActions>
       <Button sx={{whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis'}}>{itemPost.title}</Button>
+      
     </CardActions>
       
       <Divider />
@@ -35,13 +39,24 @@ export const Card = ({ itemPost }) => {
     <CardContent>
       <Typography variant="body2">
          {itemPost.text}
-         
+        
       </Typography>
-      { <IconButton aria-label="add to favorites">
+       
+           
+      <Typography sx={{ mt: 3}} color="text.secondary">
+      {dayjs(itemPost.created_at).format('DD/MM/YYYY')}
+        </Typography>
+      
+      
+      
+      
+    </CardContent>
+    <CardActions disableSpacing>
+    <IconButton aria-label="add to favorites">
          {likesCount.length}
           <FavoriteIcon />
-      </IconButton> }
-    </CardContent>
+      </IconButton>
+    </CardActions>
    </CardMui>
 
    );

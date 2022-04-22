@@ -7,3 +7,12 @@
 	border-radius: 10px;
 }
  */
+
+ .footer_card{
+
+	display: flex;
+	justify-content: space-between;
+	
+	
+
+ }

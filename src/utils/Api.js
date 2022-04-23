@@ -48,6 +48,17 @@ class Api {
 
     }
 
+    deletePost(itemID){
+        return fetch(`${this._url}/posts/${itemID}`, {
+            method: 'DELETE',
+            headers: {
+                authorization: `Bearer ${this._token}`,
+                }
+        }).then(res => res.json())
+        .catch(err => err.message);
+
+    }
+
 }
 
 export default new Api(config);

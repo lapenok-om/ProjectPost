@@ -25,7 +25,7 @@ export const App = () => {
              setPageCount(Math.ceil(data.length / 12));
              setPostList(data.slice(12*(page - 1), 12*(page - 1) +12))});
 
-     },[page, favorites]);
+     },[page, favorites, postList]);
 
     useEffect(() => {
         api.getMyInfo()
@@ -41,7 +41,7 @@ export const App = () => {
             <div className='content container '>
                 <TextArea />
                  <div className='content__cards'>
-                    <List list={postList} favorites={favorites} setFavorites={setFavorites} user={user} />
+                    <List list={postList} favorites={favorites} setFavorites={setFavorites} user={user} setPostList={setPostList} />
                 </div> 
                 <Pagination sx={{ mb: 3, mt: 3, ml: 45 }}
                     count={pageCount}

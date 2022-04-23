@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import api from '../../utils/Api';
 import CardMui from '@mui/material/Card';
@@ -12,15 +12,32 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import IconButton from '@mui/material/IconButton';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
 import dayjs from 'dayjs';
 import './index.css';
 
 
-export const Card = ({ itemPost, isInFavorites, setFavorites }) => {
+export const Card = ({ itemPost, isInFavorites, setFavorites, user, setPostList }) => {
 
-   let authorIs = true;
-   if (itemPost.author == null){
-      authorIs = false;
+   const [open, setOpen] = useState(false);
+
+   const handleClickOpen = () => {
+       setOpen(true);
+   };
+
+   const handleClose = () => {
+      setOpen(false);
+   };
+
+   let isAuthor = false;
+   if(itemPost.author !== null){
+      if(itemPost.author._id == user._id){
+         isAuthor = true; 
+      }
    }
 
    const likesCount = itemPost.likes
@@ -49,6 +66,13 @@ export const Card = ({ itemPost, isInFavorites, setFavorites }) => {
       api.deleteLike(itemPost._id);
    };
 
+   const removePost = () => {
+      setPostList((prevState) => prevState.filter((item) => itemPost._id !== item._id));
+      api.deletePost(itemPost._id);
+      setOpen(false);
+     
+   };
+
    return (
    <CardMui sx={{ maxWidth: 345 }}>
        <CardActions>
@@ -64,8 +88,8 @@ export const Card = ({ itemPost, isInFavorites, setFavorites }) => {
         alt="Paella dish"
       />
    { <CardHeader
-        avatar={<Avatar alt="Remy Sharp" src={authorIs? itemPost.author.avatar : ''}/>}
-        title={authorIs? itemPost.author.email : ''}
+        avatar={<Avatar alt="Remy Sharp" src={itemPost.author? itemPost.author.avatar : ''}/>}
+        title={itemPost.author? itemPost.author.email : ''}
     /> }
     <CardContent>
       <Typography variant="body2">
@@ -95,7 +119,31 @@ export const Card = ({ itemPost, isInFavorites, setFavorites }) => {
             <FavoriteIcon />
          </IconButton>
        )}
+
+   {isAuthor? (<Button onClick={handleClickOpen}>Delete</Button>) : ('')}
     
+   <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+          {"Удаление"}
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+          Вы действительно хотите удалить этот пост?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>Нет</Button>
+          <Button onClick={removePost} autoFocus>
+            Да
+          </Button>
+        </DialogActions>
+      </Dialog>
+     
     </CardActions>
    </CardMui>
 

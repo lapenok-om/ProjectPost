@@ -6,8 +6,9 @@ class Api {
         this._token = token;
     }
 
-    getPosts(){
-        return fetch(`${this._url}/posts`, {
+    getPosts(itemID){
+        const requestURL = itemID? `${this._url}/posts/${itemID}` : `${this._url}/posts`;
+        return fetch(requestURL, {
             headers: {
                 authorization: `Bearer ${this._token}`
             }

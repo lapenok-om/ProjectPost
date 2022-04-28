@@ -4,28 +4,17 @@ import api from './utils/Api';
 
 import { Footer } from './components/Footer';
 import { Header } from './components/Header';
-import { List } from './components/List';
-import { TextArea } from './components/TextArea';
-import Pagination from '@mui/material/Pagination';
+import { Body } from './components/Body';
+import { Item } from './components/Item';
+import { CreatePost } from './components/CreatePost';
+import { Routes, Route, Link } from "react-router-dom";
 
 import './index.css';
 
+
 export const App = () => { 
-    const [postList, setPostList] = useState(null);
+   
     const [user, setUser] = useState("?");
-    const [page, setPage] = useState(1);
-    const [pageCount, setPageCount] = useState(1);
-    const [favorites, setFavorites] = useState(JSON.parse(localStorage.getItem('favorites')) || []);
-
-    
-
-     useEffect(() => {
-         api.getPosts()
-         .then((data) => {
-             setPageCount(Math.ceil(data.length / 12));
-             setPostList(data.slice(12*(page - 1), 12*(page - 1) +12))});
-
-     },[page, favorites, postList]);
 
     useEffect(() => {
         api.getMyInfo()
@@ -39,20 +28,13 @@ export const App = () => {
                 <Header user={user} />
             
             <div className='content container '>
-                <TextArea />
-                 <div className='content__cards'>
-                    <List list={postList} favorites={favorites} setFavorites={setFavorites} user={user} setPostList={setPostList} />
-                </div> 
-                <Pagination sx={{ mb: 3, mt: 3, ml: 45 }}
-                    count={pageCount}
-                    page={page}
-                    onChange={(_,number) => setPage(number)}
-                 />   
-           
+            <Routes>
+                <Route path="/" element={<Body user={user}/>}/>
+                <Route path="posts/:itemID" element={<Item />} />
+                <Route path="posts/create" element={<CreatePost />} />
+            </Routes>
             </div> 
-                
-                <Footer />
-            
-        </div>
+              <Footer />
+         </div>
     );
 };

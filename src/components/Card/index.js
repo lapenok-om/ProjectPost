@@ -17,6 +17,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import { Link } from "react-router-dom";
 import dayjs from 'dayjs';
 import './index.css';
 
@@ -76,10 +77,12 @@ export const Card = ({ itemPost, isInFavorites, setFavorites, user, setPostList 
    return (
    <CardMui sx={{ maxWidth: 345 }}>
        <CardActions>
-      <Button sx={{whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis'}}>{itemPost.title}</Button>
+      <Button sx={{whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis'}}>
+      <Link to={`posts/${itemPost._id}`}> {itemPost.title}</Link></Button>
+        
       
     </CardActions>
-      
+   
       <Divider />
       <CardMedia
         component="img"

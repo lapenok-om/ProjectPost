@@ -59,21 +59,24 @@ export const Card = ({ itemPost, isInFavorites, setFavorites, user, setPostList 
       writeLS('favorites', itemPost._id);
       setFavorites((prevState) => [...prevState, itemPost._id]);
       api.addLike(itemPost._id);
+      alert("Пост добавлен в избранное");
    };
 
    const removeFavorite = () => {
       removeLS('favorites', itemPost._id);
       setFavorites((prevState) => prevState.filter((itemID) => itemPost._id !== itemID));
       api.deleteLike(itemPost._id);
+      alert("Пост удален из избранного");
    };
 
    const removePost = () => {
       setPostList((prevState) => prevState.filter((item) => itemPost._id !== item._id));
       api.deletePost(itemPost._id);
       setOpen(false);
-     
+           
    };
 
+   
    return (
    <CardMui sx={{ maxWidth: 345 }}>
        <CardActions>
@@ -88,7 +91,8 @@ export const Card = ({ itemPost, isInFavorites, setFavorites, user, setPostList 
         component="img"
         height="194"
         image={itemPost.image}
-        alt="Paella dish"
+        alt="imagepost"
+        
       />
    { <CardHeader
         avatar={<Avatar alt="Remy Sharp" src={itemPost.author? itemPost.author.avatar : ''}/>}

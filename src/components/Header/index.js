@@ -14,10 +14,10 @@ export const Header = ({user}) => {
                     <div><AboutMe userInfo={user}/></div>
                     <div>
                     <Breadcrumbs aria-label="breadcrumb">
-                        <Link underline="hover" color="inherit" href="/">
+                        <Link underline="hover" href="/">
                         Home
                         </Link>
-                        <Link underline="hover" color="inherit" href="https://github.com/lapenok-om/ProjectPost">
+                        <Link underline="hover" href="https://github.com/lapenok-om/ProjectPost">
                         GitHub
                         </Link>
                     </Breadcrumbs>

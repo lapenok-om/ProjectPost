@@ -15,6 +15,7 @@ export const Body = ( {user} ) => {
 
     useEffect(() => {
         api.getPosts()
+        .then((data) => data.sort(function(a,b){return new Date(b.created_at) - new Date(a.created_at);}))
         .then((data) => {
             setPageCount(Math.ceil(data.length / 12));
             setPostList(data.slice(12*(page - 1), 12*(page - 1) +12))});

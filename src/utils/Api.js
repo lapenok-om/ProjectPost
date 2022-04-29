@@ -13,7 +13,20 @@ class Api {
                 authorization: `Bearer ${this._token}`
             }
         }).then(res => res.json())
-        .catch(err => err.message);
+        .catch(err => alert(err.message));
+
+    }
+
+    addPost(post){
+        return fetch(`${this._url}/posts`, {
+            method: 'POST',
+            headers: {
+                authorization: `Bearer ${this._token}`,
+                'Content-Type': 'application/json',
+                },
+            body: JSON.stringify(post),
+        }).then(res => res.json())
+        .catch(err => alert(err.message));
 
     }
 
@@ -23,7 +36,18 @@ class Api {
                 authorization: `Bearer ${this._token}`,
                 }
         }).then(res => res.json())
-        .catch(err => err.message);
+        .catch(err => alert(err.message));
+
+    }
+
+    getInfoAuthorComment(Id){
+        return fetch(`${this._url}/users/${Id}`, {
+            headers: {
+                authorization: `Bearer ${this._token}`,
+                }
+        }).then(res => res.json())
+        .catch(err => alert(err.message));
+
 
     }
 
@@ -34,7 +58,7 @@ class Api {
                 authorization: `Bearer ${this._token}`,
                 }
         }).then(res => res.json())
-        .catch(err => err.message);
+        .catch(err => alert(err.message));
 
     }
 
@@ -45,7 +69,7 @@ class Api {
                 authorization: `Bearer ${this._token}`,
                 }
         }).then(res => res.json())
-        .catch(err => err.message);
+        .catch(err => alert(err.message));
 
     }
 
@@ -56,7 +80,7 @@ class Api {
                 authorization: `Bearer ${this._token}`,
                 }
         }).then(res => res.json())
-        .catch(err => err.message);
+        .catch(err =>alert(err.message));
 
     }
 

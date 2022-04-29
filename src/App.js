@@ -24,11 +24,13 @@ export const App = () => {
     
    
     return (
+        
         <div className='appContainer'>
                 <Header user={user} />
             
             <div className='content container '>
             <Routes>
+
                 <Route path="/" element={<Body user={user}/>}/>
                 <Route path="posts/:itemID" element={<Item />} />
                 <Route path="posts/create" element={<CreatePost />} />
